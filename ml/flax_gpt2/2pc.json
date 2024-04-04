@@ -1,0 +1,42 @@
+{
+    "id": "outsourcing.2pc",
+    "nodes": {
+        "node:0": "ip-alice:60100",
+        "node:1": "ip-bob:60100"
+    },
+    "devices": {
+        "SPU": {
+            "kind": "SPU",
+            "config": {
+                "node_ids": [
+                    "node:0",
+                    "node:1"
+                ],
+                "spu_internal_addrs": [
+                    "ip-alice:60200",
+                    "ip-bob:60200"
+                ],
+                "runtime_config": {
+                    "protocol": "SEMI2K",
+                    "field": "FM64",
+                    "enable_pphlo_profile": true,
+                    "enable_hal_profile": true,
+                    "fxp_exp_mode": 0,
+                    "fxp_exp_iters": 5
+                }
+            }
+        },
+        "P1": {
+            "kind": "PYU",
+            "config": {
+                "node_id": "node:0"
+            }
+        },
+        "P2": {
+            "kind": "PYU",
+            "config": {
+                "node_id": "node:1"
+            }
+        }
+    }
+}
