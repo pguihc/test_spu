@@ -121,7 +121,8 @@ def run_on_puma():
     with hack_softmax_context("hijack jax softmax", enabled = True), hack_gelu_context("hijack jax gelu", enabled=True):
         input_ids = ppd.device("P1")(lambda x: x)(inputs_ids)
         params = ppd.device("P2")(lambda x: x)(pretrained_model.params)
-        outputs_ids = ppd.device("SPU")(text_generation,)(input_ids, params)
+        # error: outputs_ids = ppd.device("SPU")(text_generation,)(input_ids, params)
+        outputs_ids = ppd.device("SPU")(text_generation, copts=copts)(input_ids, params)
         outputs_ids = ppd.get(outputs_ids)
     return outputs_ids
 
